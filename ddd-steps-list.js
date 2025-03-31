@@ -20,12 +20,8 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "BUTT",
-    };
+    this.circle = "";
+    this.step = "";
     this.registerLocalization({
       context: this,
       localesPath:
@@ -40,6 +36,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
+      dddPrimary: { type: String, reflect: true },
     };
   }
 
@@ -48,10 +45,12 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: block;
+        display: flew;
         color: var(--ddd-theme-primary);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
+        gap: 2rem;
+        padding: var(---ddd-spacing-4);
       }
       .wrapper {
         margin: var(--ddd-spacing-2);
@@ -60,16 +59,44 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
       }
+
+      @media (min-width: 768px) {
+        :host {
+          flex-direction: column;
+        }
+      }
+
+      /* border radius for  circle = 50% */
     `];
+  }
+
+  firstUpdated() {
+    this.validate();
+  }
+
+  validate() {
+    Array.from(this.children).forEach(child => {
+      if (child.tagName !== 'DDD-STEPS-LIST-ITEM') child.remove();
+    }
+    );
+    this.querySelectorAll('ddd-steps-list-item').forEach((child, index) => {
+      item.step = index + 1;
+      item.primary = this.dddPrimary;
+    });
+  }
+
+  updated() {
+    this.validate();
   }
 
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
+<!-- <div class="wrapper">
+  <h3><span>${this.t.title}:</span> ${this.title}</h3> -->
   <slot></slot>
-</div>`;
+<!-- </div> -->
+`;
   }
 
   /**
