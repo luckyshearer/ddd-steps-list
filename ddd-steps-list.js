@@ -20,8 +20,8 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.circle = "";
-    this.step = "";
+    this.dddPrimary = false;
+
     this.registerLocalization({
       context: this,
       localesPath:
@@ -35,8 +35,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
-      dddPrimary: { type: String, reflect: true },
+      dddPrimary: { type: Boolean, attribute: 'ddd-primary', reflect: true },
     };
   }
 
@@ -45,19 +44,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: flew;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-        gap: 2rem;
-        padding: var(---ddd-spacing-4);
-      }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      h3 span {
-        font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
+        display: block;
       }
 
       @media (min-width: 768px) {
@@ -74,28 +61,47 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     this.validate();
   }
 
+  change() {
+    this.validate();
+  }
+
   validate() {
-    Array.from(this.children).forEach(child => {
-      if (child.tagName !== 'DDD-STEPS-LIST-ITEM') child.remove();
+    const children = Array.from(this.children);
+    let step = 0;
+    children.forEach(child => {
+      const tag = child.tagName.toLowerCase();
+      if (tag !== DddStepsListItems.tag) {
+        this.removeChild(child);
+      } else {
+        step++;
+        child.step = step;
+        if (this.dddPrimary) {
+          child.setAttribute('ddd-primary', '');
+        }else{
+          child.removeAttribute('ddd-primary');
+        }
+      }
     }
     );
-    this.querySelectorAll('ddd-steps-list-item').forEach((child, index) => {
-      item.step = index + 1;
-      item.primary = this.dddPrimary;
-    });
   }
 
   updated() {
-    this.validate();
+    if (this.change.has('dddPrimary')) {
+      const items = this.querySelectorAll(DddStepsListItems.tag);
+      items.forEach(item => {
+        if (this.dddPrimary) {
+          item.dddPrimary = this.dddPrimary;
+        } else {
+          item.removeAttribute('ddd-primary');
+        }
+      });
   }
+}
 
   // Lit render the HTML
   render() {
     return html`
-<!-- <div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3> -->
-  <slot></slot>
-<!-- </div> -->
+    <slot></slot>
 `;
   }
 
