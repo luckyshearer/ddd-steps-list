@@ -113,6 +113,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     <div class="steps-container">
     <div class="line"></div>
     <slot @slotchange="${this.validate}"></slot>
+    </div>
 `;
   }
 
