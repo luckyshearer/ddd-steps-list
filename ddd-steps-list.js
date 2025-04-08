@@ -5,6 +5,7 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import { DddStepsListItem } from "./ddd-steps-list-item.js";
 
 /**
  * `ddd-steps-list`
@@ -20,7 +21,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.dddPrimary = false;
+    this.dddPrimary = "";
 
     this.registerLocalization({
       context: this,
@@ -35,7 +36,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       ...super.properties,
-      dddPrimary: { type: Boolean, attribute: 'ddd-primary', reflect: true },
+      dddPrimary: { type: String, attribute: 'ddd-primary'},
     };
   }
 
@@ -45,15 +46,32 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
+        position: relative;
+        padding: var(--ddd-spacing-4, 16px);
+        font-family: var(--ddd-font-primary, sans-serif);
       }
 
-      @media (min-width: 768px) {
-        :host {
-          flex-direction: column;
+      .steps-container {
+        position: relative;
+        padding-left: var(--ddd-spacing-4, 16px);
+      }
+
+      .line {
+        position: absolute;
+        top: var(--ddd-icon-size-xl, 50px);
+        left: calc(var(--ddd-icon-size-xl, 50px) / 2);
+        width: 0;
+        height: calc(100% - var(--ddd-icon-size-xl, 50px));
+        border-left: 2px dashed var(--ddd-theme-default-slateGray, #ccc);
+        z-index: 0;
+      }
+
+      @media (max-width: 768px) {
+        .steps-container {
+          padding-left: var(--ddd-spacing-2, 8px);
         }
       }
 
-      /* border radius for  circle = 50% */
     `];
   }
 
@@ -61,38 +79,29 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     this.validate();
   }
 
-  change() {
-    this.validate();
-  }
-
   validate() {
     const children = Array.from(this.children);
     let step = 0;
-    children.forEach(child => {
+    children.forEach((child) => {
       const tag = child.tagName.toLowerCase();
-      if (tag !== DddStepsListItems.tag) {
+      if (tag !== DddStepsListItem.tag) {
         this.removeChild(child);
       } else {
         step++;
         child.step = step;
-        if (this.dddPrimary) {
-          child.setAttribute('ddd-primary', '');
-        }else{
-          child.removeAttribute('ddd-primary');
-        }
       }
-    }
-    );
+    });
   }
 
-  updated() {
-    if (this.change.has('dddPrimary')) {
-      const items = this.querySelectorAll(DddStepsListItems.tag);
-      items.forEach(item => {
+  updated(changedProperties) {
+    if (changedProperties.has("dddPrimary")) {
+      const items = this.querySelectorAll(DddStepsListItem.tag);
+      items.forEach((item) => {
         if (this.dddPrimary) {
-          item.dddPrimary = this.dddPrimary;
+          item.setAttribute ("ddd-primary", this.dddPrimary);
+          item.style.setProperty('--ddd-primary', `#${this.dddPrimary}`);
         } else {
-          item.removeAttribute('ddd-primary');
+          item.removeAttribute("ddd-primary");
         }
       });
   }
@@ -101,7 +110,9 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-    <slot></slot>
+    <div class="steps-container">
+    <div class="line"></div>
+    <slot @slotchange="${this.validate}"></slot>
 `;
   }
 

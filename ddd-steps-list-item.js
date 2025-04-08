@@ -2,9 +2,9 @@
  * Copyright 2025 luckyshearer
  * @license Apache-2.0, see LICENSE for full text.
  */
-import { html, css } from "lit";
-import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
-// import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import { LitElement, html, css } from "lit";
+import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
  * `ddd-steps-list-item`
@@ -12,7 +12,7 @@ import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
  * @demo index.html
  * @element ddd-steps-list-item
  */
-export class DddStepsListItems extends DDD {
+export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
     return "ddd-steps-list-item";
@@ -21,6 +21,7 @@ export class DddStepsListItems extends DDD {
   constructor() {
     super();
     this.step = 0;
+    this.title = "";
 
     this.registerLocalization({
       context: this,
@@ -36,6 +37,7 @@ export class DddStepsListItems extends DDD {
     return {
       ...super.properties,
       step: { type: Number, reflect: true },
+      title: { type: String, reflect: true }
     };
   }
 
@@ -45,54 +47,73 @@ export class DddStepsListItems extends DDD {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-        margin-bottom: var(--ddd-spacing-4);
-      }
-      
-      :host(:finalChild) {
-        margin-bottom: 0;
+        position: relative;
+        margin-bottom: var(--ddd-spacing-4, 20px);
+        padding-left: var(--ddd-spacing-16, 60px);
+        color: var(--ddd-theme-default-text, #000);
+        font-family: var(--ddd-font-primary, sans-serif);
       }
 
-      .step {
-        display: flex;
-        gap: var(--ddd-spacing-2);
-        align-items: flex-start;
-      }
+      /* :host(:last-child) {
+        margin-bottom: 0;
+      } */
 
       .circle {
-        width: var(--ddd-steps-list-item-circle-size, var(--ddd-icon-size-m));
-        height: var(--ddd-steps-list-item-circle-size, var(--ddd-icon-size-m));
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: var(--ddd-icon-size-xl, 50px);
+        height: var(--ddd-icon-size-xl, 50px);
         border-radius: 50%;
-        background-color: var(--ddd-theme-default-beaverBlue);
+        background-color: var(--ddd-theme-default-beaverBlue, #1E407C);
+        color: var(--ddd-theme-default-white, #fff);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
-        font-size: var(--ddd-steps-list-item-circle-font-size, var(--ddd-font-size-m));
-        margin-right: var(--ddd-spacing-2);
+        font-weight: var(--ddd-font-weight-bold, bold);
+        font-size: var(--ddd-font-size-m, 18px);
+      }
+
+      /* .step-content{
+        flex: 1;
+        padding-top: var(--ddd-spacing-1, 4px);
+      } */
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: var(--ddd-spacing-2, 8px);
+        color: var(--ddd-theme-default-beaverBlue, #1E407C);
+        font-size: var(--ddd-font-size-1, 1.25rem);
+      }
+
+      /* ul{
+        padding-left: var(--ddd-spacing-5, 20px);
+        margin-top: var(--ddd-spacing-2, 8px);
+        margin-bottom: var(--ddd-spacing-2, 8px);
+      }
+
+      li{
+        margin-bottom: var(--ddd-spacing-1, 4px);
       }
 
       :host([ddd-primary]) .circle {
-        background-color: var(--ddd-theme-default-beaverBlue);
-        color: var(--ddd-theme-accent);
+        background-color: var(--ddd-primary-color, #1E407C);
       }
 
-      .step-content {
-        flex: 1;
-      }
+      :host([ddd-primary]) h3 {
+        color: var(--ddd-primary-color, #1E407C);
+      } */
+
     `];
   }
 
   // Lit render the HTML
   render() {
     return html`
-    <div class="step">
-      <div class="circle">${this.step}</div>
-      <div class="step-content">
-        <slot></slot>
-      </div>
+    <div class="circle">${this.step}</div>
+    <div class="step-content">
+      ${this.title ? html`<h3>${this.title}</h3>` : ''}
+      <slot></slot>
     </div>
     `;
   }

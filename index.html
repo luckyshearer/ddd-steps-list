@@ -7,40 +7,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="Description" content="Demonstration for ddd-steps-list">
 
-  <style>
+  <script type="module" src="./ddd-steps-list-item.js"></script>
+  <script type="module" src="./ddd-steps-list.js"></script>
+  
+  <!-- <style>
     :root, html, body {
       margin: 0;
       padding: 0;
     }
-    #demo {
-      margin: var(--ddd-spacing-2);
+    body{
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    ddd-steps-list {
-      margin: var(--ddd-spacing-2);
-      border: var(--ddd-border-md);
-      border-radius: var(--ddd-radius-lg);
-    }
-    ddd-steps-list:hover {
-      box-shadow: var(--ddd-boxShadow-sm);
-    }
-    #example {
-      --ddd-steps-list-font-size: var(--ddd-font-size-l);
-      background-color: var(--ddd-accent-2);
+
+    h1 {
+      font-size: var(--ddd-font-size-xxl);
       color: var(--ddd-primary-17);
+      margin-bottom: var(--ddd-spacing-4);
     }
-  </style>
-  <title>ddd-steps-list</title>
+
+    p{
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    ddd-steps-list {
+      margin: var(--ddd-spacing-2, 8px);
+      margin-bottom: 40px;
+    }
+
+    #example {
+      --ddd-steps-list-font-size: var(--ddd-font-size-l, 1.25rem);
+    }
+
+    .demo-controls {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #1E407C;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 16px;
+      border-radius: 4px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    button.hover{
+      background-color: #163265;
+    } -->
+
+
+  <!-- </style> -->
+  <!-- <title>Start Planning Your Penn State Experience</title> -->
 </head>
 
 <body>
-  <ddd-steps-list ddd-primary>
-    <ddd-steps-list-item>
-      <h3>Apply to Penn State</h3>
-      <p>Complete the online application</p>
+  <h1>Start Planning Your Penn State Experience</h1>
+  <!-- <p>Take the next steps toward a future at Penn State Altoona. Find admission requirements, tuition and financial aid, and more.</p> -->
+
+  <ddd-steps-list ddd-Primary="1E407C">
+    <ddd-steps-list-item title="Choose your enrollment period">
+      <p> You will need to complete the FASFA each year for financial aid consideration:</p>
+        <ul>
+          <li>Summer 2024</li>
+          <li>Fall 2024/Spring 2025</li>
+        </ul>
     </ddd-steps-list-item>
-    <ddd-steps-list-item>
-      <h3>Submit Transcripts</h3>
-      <p>Request transcripts from all previous institutions</p>
+
+    <ddd-steps-list-item title="Get help">
+      <p>Utilize these resources for assistance with Federal Aid:</p>
+      <ul>
+        <li>Call the Federal Student Aid Information Center at 1-800-433-3243</li>
+        <li>Visit the Federal Student Aid (FSA) site at FASFA</li>
+      </ul>
+    </ddd-steps-list-item>
+
+    <ddd-steps-list-item title="Ensure Receipt of Email">
+      <p>Ensure your email settings allow messages from these addresses:</p>
+      <ul>
+        <li>osa.noreply@psu.edu</li>
+        <li>OSAaward@psu.edu</li>
+      </ul>
+    </ddd-steps-list-item>
   </ddd-steps-list>
 </body>
 </html>
