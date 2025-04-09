@@ -49,26 +49,19 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
         position: relative;
         padding: var(--ddd-spacing-4, 16px);
         font-family: var(--ddd-font-primary, sans-serif);
+        color: var(--ddd-theme-default-text, #000);
       }
 
       .steps-container {
         position: relative;
-        padding-left: var(--ddd-spacing-4, 16px);
+        padding-left: calc(var(--ddd-icon-size-xl, 50px) + var(--ddd-spacing-4, 16px));
       }
 
-      .line {
-        position: absolute;
-        top: var(--ddd-icon-size-xl, 50px);
-        left: calc(var(--ddd-icon-size-xl, 50px) / 2);
-        width: 0;
-        height: calc(100% - var(--ddd-icon-size-xl, 50px));
-        border-left: 2px dashed var(--ddd-theme-default-slateGray, #ccc);
-        z-index: 0;
-      }
+      
 
-      @media (max-width: 768px) {
+      @media (max-width: 768px){
         .steps-container {
-          padding-left: var(--ddd-spacing-2, 8px);
+          padding-left: calc(var(--ddd-icon-size-lg, 40px) + var(--ddd-spacing-4, 16px));
         }
       }
 
@@ -111,7 +104,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
     <div class="steps-container">
-    <div class="line"></div>
+    
     <slot @slotchange="${this.validate}"></slot>
     </div>
 `;

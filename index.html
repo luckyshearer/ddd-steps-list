@@ -10,68 +10,14 @@
   <script type="module" src="./ddd-steps-list-item.js"></script>
   <script type="module" src="./ddd-steps-list.js"></script>
   
-  <!-- <style>
-    :root, html, body {
-      margin: 0;
-      padding: 0;
-    }
-    body{
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      font-size: var(--ddd-font-size-xxl);
-      color: var(--ddd-primary-17);
-      margin-bottom: var(--ddd-spacing-4);
-    }
-
-    p{
-      line-height: 1.5;
-      margin-bottom: 2rem;
-    }
-
-    ddd-steps-list {
-      margin: var(--ddd-spacing-2, 8px);
-      margin-bottom: 40px;
-    }
-
-    #example {
-      --ddd-steps-list-font-size: var(--ddd-font-size-l, 1.25rem);
-    }
-
-    .demo-controls {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ccc;
-    }
-
-    button {
-      background-color: #1E407C;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      font-size: 16px;
-      border-radius: 4px;
-      margin-right: 10px;
-      cursor: pointer;
-    }
-
-    button.hover{
-      background-color: #163265;
-    } -->
-
-
-  <!-- </style> -->
-  <!-- <title>Start Planning Your Penn State Experience</title> -->
+  <style>
+  </style>
 </head>
 
 <body>
   <h1>Start Planning Your Penn State Experience</h1>
-  <!-- <p>Take the next steps toward a future at Penn State Altoona. Find admission requirements, tuition and financial aid, and more.</p> -->
 
-  <ddd-steps-list ddd-Primary="1E407C">
+  <ddd-steps-list ddd-primary="1E407C">
     <ddd-steps-list-item title="Choose your enrollment period">
       <p> You will need to complete the FASFA each year for financial aid consideration:</p>
         <ul>
@@ -84,17 +30,29 @@
       <p>Utilize these resources for assistance with Federal Aid:</p>
       <ul>
         <li>Call the Federal Student Aid Information Center at 1-800-433-3243</li>
-        <li>Visit the Federal Student Aid (FSA) site at FASFA</li>
+        <li>Visit the Federal Student Aid (FSA) site at <a href="https://studentaid.gov/h/apply-for-aid/fafsa" target="_blank">FASFA: Applying for Aid</a></li>
+        <li>Follow Federal Student Aid on YouTube</li>
       </ul>
     </ddd-steps-list-item>
 
     <ddd-steps-list-item title="Ensure Receipt of Email">
       <p>Ensure your email settings allow messages from these addresses:</p>
       <ul>
-        <li>osa.noreply@psu.edu</li>
-        <li>OSAaward@psu.edu</li>
+        <li><a href="mailto:osa.noreply@psu.edu">osa.noreply@psu.edu</a></li>
+        <li><a href="mailto:OSAaward@psu.edu">OSAaward@psu.edu</a></li>
+        <li><a href="mailto:FederalStudentAidFASFA@cpsemail.ed.gov">FederalStudentAidFASFA@cpsemail.ed.gov</a></li>
+        <li><a href="mailto:FederalStudentAidPIN@cpsemail.ed.gov">FederalStudentAidPIN@cpsemail.ed.gov</a></li>
       </ul>
     </ddd-steps-list-item>
+
+    <ddd-steps-list-item title = "Review Your Student Aid Report">
+      <p>After submitting the FASFA, you'll receive a Student Aid Report (SAR) via email.</p>
+      <ul>
+        <li>Verify all information is correct and make necessary connections through the FASFA website.</li>
+        <li>For questions, contact the Federal Student Aid Information Center at 1-800-433-3243 and provide your DRN number from the SAR. </li>
+        <li>Print the revised copy for your records.</li>
+      </ul>
+      </ddd-steps-list-item>
   </ddd-steps-list>
 </body>
 </html>

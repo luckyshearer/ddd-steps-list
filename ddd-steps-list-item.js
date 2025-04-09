@@ -50,13 +50,7 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         position: relative;
         margin-bottom: var(--ddd-spacing-4, 20px);
         padding-left: var(--ddd-spacing-16, 60px);
-        color: var(--ddd-theme-default-text, #000);
-        font-family: var(--ddd-font-primary, sans-serif);
       }
-
-      /* :host(:last-child) {
-        margin-bottom: 0;
-      } */
 
       .circle {
         position: absolute;
@@ -65,49 +59,71 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         width: var(--ddd-icon-size-xl, 50px);
         height: var(--ddd-icon-size-xl, 50px);
         border-radius: 50%;
-        background-color: var(--ddd-theme-default-beaverBlue, #1E407C);
+        background-color: var(--ddd-primary, #1E407C);
         color: var(--ddd-theme-default-white, #fff);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: var(--ddd-font-weight-bold, bold);
-        font-size: var(--ddd-font-size-m, 18px);
+        font-weight: bold;
       }
 
-      /* .step-content{
-        flex: 1;
-        padding-top: var(--ddd-spacing-1, 4px);
-      } */
+      .line {
+        position: absolute;
+        top: calc(var(--ddd-icon-size-xl, 50px));
+        left: calc(var(--ddd-icon-size-xl, 50px) - 25px);
+        width: 0;
+        height: calc(100% + var(--ddd-spacing-4, 20px));
+        border-left: 1px dashed var(--ddd-theme-default-slateGray, #ccc);
+      }
+
+      :last-of-type .line {
+        display: none;
+      }
+
+      h1{
+        font-size: var(--ddd-font-size-xl, 24px);
+        font-weight: bold;
+      }
+
 
       h3 {
-        margin-top: 0;
-        margin-bottom: var(--ddd-spacing-2, 8px);
-        color: var(--ddd-theme-default-beaverBlue, #1E407C);
-        font-size: var(--ddd-font-size-1, 1.25rem);
-      }
-
-      /* ul{
-        padding-left: var(--ddd-spacing-5, 20px);
         margin-top: var(--ddd-spacing-2, 8px);
         margin-bottom: var(--ddd-spacing-2, 8px);
+        color: var(--ddd-primary, #1E407C);
+        font-size: var(--ddd-font-size-l, 20px); 
       }
 
-      li{
-        margin-bottom: var(--ddd-spacing-1, 4px);
+      p{
+        line-height: 1.5;
+        margin-bottom: var(--ddd-spacing-4, 10px);
+        font-size: var(--ddd-font-size-m, 16px);
       }
 
-      :host([ddd-primary]) .circle {
-        background-color: var(--ddd-primary-color, #1E407C);
+      ul{
+        padding-left: var(--ddd-spacing-4, 16px);
       }
 
-      :host([ddd-primary]) h3 {
-        color: var(--ddd-primary-color, #1E407C);
-      } */
+      @media (max-width: 768px) {
+        .circle {
+          width: var(--ddd-icon-size-l, 40px);
+          height: var(--ddd-icon-size-l, 40px);
+        }
+        .line {
+          top: calc(var(--ddd-icon-size-l, 40px));
+          height: calc(100% + var(--ddd-spacing-4, 8px));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .line {
+          display: none;
+        }
+      }
 
     `];
   }
 
-  // Lit render the HTML
+  
   render() {
     return html`
     <div class="circle">${this.step}</div>
@@ -115,12 +131,10 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
       ${this.title ? html`<h3>${this.title}</h3>` : ''}
       <slot></slot>
     </div>
+    <div class="line"></div>
     `;
   }
 
-  /**
-   * haxProperties integration via file reference
-   */
   static get haxProperties() {
     return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
       .href;
