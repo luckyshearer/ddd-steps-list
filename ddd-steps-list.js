@@ -49,7 +49,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
         position: relative;
         padding: var(--ddd-spacing-4, 16px);
         font-family: var(--ddd-font-primary, sans-serif);
-        color: var(--ddd-theme-default-text, #000);
+        color: var(--ddd-primary, #1E407C);
       }
 
       .steps-container {

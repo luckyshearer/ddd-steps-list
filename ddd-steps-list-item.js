@@ -90,7 +90,7 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         margin-top: var(--ddd-spacing-2, 8px);
         margin-bottom: var(--ddd-spacing-2, 8px);
         color: var(--ddd-primary, #1E407C);
-        font-size: var(--ddd-font-size-l, 20px); 
+        font-size: var(--ddd-font-size-l, 18px); 
       }
 
       p{
@@ -101,6 +101,7 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
 
       ul{
         padding-left: var(--ddd-spacing-4, 16px);
+        color: var(--ddd-theme-default-slateGray, #ccc);
       }
 
       @media (max-width: 768px) {
