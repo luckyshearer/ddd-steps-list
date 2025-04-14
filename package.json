@@ -18,6 +18,10 @@
     "type": "module",
     "main": "ddd-steps-list.js",
     "module": "ddd-steps-list.js",
+    
+    "type": "module",
+    "main": "ddd-steps-list-item.js",
+    "module": "ddd-steps-list-item.js",
     "scripts": {
       "start": "web-dev-server",
       "build": "your-build-command-here",
