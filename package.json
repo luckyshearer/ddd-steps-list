@@ -20,7 +20,7 @@
     "module": "ddd-steps-list.js",
     "scripts": {
       "start": "web-dev-server",
-      "build": "rimraf public && rollup -c rollup.config.js && npm run analyze",
+      "build": "your-build-command-here",
       "analyze": "cem analyze --litelement --exclude public",
       "release": "npm run build && commit-and-tag-version && git push --follow-tags origin main && npm publish",
       "test": "web-test-runner test/**/*.test.js --coverage --node-resolve",
@@ -28,8 +28,9 @@
     },
     "dependencies": {
       "lit": "^3.2.1",
-      "@haxtheweb/d-d-d": "^10.0.2",
-      "@haxtheweb/i18n-manager": "^10.0.2"
+      "@haxtheweb/d-d-d": "^1.0.0",
+      "@haxtheweb/i18n-manager": "^1.0.0",
+      "@open-wc/testing": "^3.0.0"
     },
     "devDependencies": {
       "@babel/preset-env": "^7.16.4",
@@ -56,5 +57,8 @@
     "hax": {
       "cli": true
     },
-    "customElements": "custom-elements.json"
+    "customElements": "custom-elements.json",
+    "engines": {
+      "node": ">=16.x"
+    }
   }
