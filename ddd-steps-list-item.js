@@ -97,6 +97,7 @@ export class DddStepsListItem extends DDDSuper(I18NMixin(LitElement)) {
         line-height: 1.5;
         margin-bottom: var(--ddd-spacing-4, 10px);
         font-size: var(--ddd-font-size-m, 16px);
+        color: var(--ddd-theme-default-slateGray, #ccc);
       }
 
       ul{
