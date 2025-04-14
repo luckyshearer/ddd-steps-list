@@ -28,7 +28,7 @@
     },
     "dependencies": {
       "lit": "^3.2.1",
-      "@haxtheweb/d-d-d": "^1.0.0",
+      "@haxtheweb/d-d-d": "correct-version-or-remove",
       "@haxtheweb/i18n-manager": "^1.0.0",
       "@open-wc/testing": "^3.0.0"
     },
