@@ -18,10 +18,6 @@
     "type": "module",
     "main": "ddd-steps-list.js",
     "module": "ddd-steps-list.js",
-    
-    "type": "module",
-    "main": "ddd-steps-list-item.js",
-    "module": "ddd-steps-list-item.js",
     "scripts": {
       "start": "web-dev-server",
       "build": "your-build-command-here",
@@ -32,8 +28,8 @@
     },
     "dependencies": {
       "lit": "^3.2.1",
-      "@haxtheweb/d-d-d": "correct-version-or-remove",
-      "@haxtheweb/i18n-manager": "^1.0.0",
+      "@haxtheweb/d-d-d": "^10.0.2",
+      "@haxtheweb/i18n-manager": "^10.0.2",
       "@open-wc/testing": "^3.0.0"
     },
     "devDependencies": {
